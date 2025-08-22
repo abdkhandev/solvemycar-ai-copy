@@ -28,8 +28,7 @@
             'shine': 'shine 3s linear infinite',
             'scroll-hint': 'scrollHint 1.5s infinite',
             'loader-spin': 'loaderSpin 2s linear infinite',
-            'glass-shine': 'glassShine 4s infinite linear',
-            'slowBlink': 'slowBlink 2.5s ease-in-out infinite'
+            'glass-shine': 'glassShine 4s infinite linear'
           },
           keyframes: {
             pulseGlow: {
@@ -59,10 +58,6 @@
             glassShine: {
               '0%': { 'background-position': '-200% center' },
               '100%': { 'background-position': '100% center' }
-            },
-            slowBlink: {
-              '0%, 100%': { opacity: 0, transform: 'scale(0.95)' },
-              '50%': { opacity: 1, transform: 'scale(1)' }
             }
           }
         }
@@ -344,6 +339,7 @@
       background: linear-gradient(145deg, #424242 0%, #323232 100%);
     }
     .service-button {
+      display: inline-block;
       font-family: 'Roboto Mono', monospace;
       font-size: 14px;
       padding: 12px 20px;
@@ -352,6 +348,7 @@
       background: linear-gradient(145deg, #3a3a3a 0%, #2e2e2e 100%);
       color: #e0e0e0;
       text-align: center;
+      text-decoration: none;
       transition: all 0.3s ease;
       transform-style: preserve-3d;
       position: relative;
@@ -385,25 +382,6 @@
       gap: 12px;
       justify-content: center;
       margin-top: 20px;
-    }
-    .custom-loader-overlay {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 5000;
-    }
-    .custom-loader-overlay img {
-      width: 220px;
-      height: auto;
-      animation: slowBlink 2.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
-    }
-    @keyframes slowBlink {
-      0%, 100% { opacity: 0; transform: scale(0.95); }
-      50% { opacity: 1; transform: scale(1); }
     }
     footer {
       background: rgba(30,30,30,0.3);
@@ -439,9 +417,6 @@
         width: 60px;
         height: 60px;
       }
-      .custom-loader-overlay img {
-        width: 180px;
-      }
     }
     @media (max-width: 480px) {
       .services-buttons-container {
@@ -465,18 +440,10 @@
         width: 50px;
         height: 50px;
       }
-      .custom-loader-overlay img {
-        width: 150px;
-      }
     }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
-  <!-- Loader Overlay -->
-  <div class="custom-loader-overlay" id="loader-overlay">
-    <img src="https://drive.google.com/uc?export=download&id=1zn-fuYdtgxkEz1poMl5D2oe73Bi8W84m" alt="SolveMyCar Loader">
-  </div>
-
   <!-- Hero Section -->
   <section class="hero glassy-bg">
     <div class="relative z-10 text-center">
@@ -497,7 +464,7 @@
         <div class="messages"></div>
         <div class="loader" id="loader"></div>
         <div class="input-container">
-          <input id="prompt" type="text" placeholder="Describe your car issue (e.g., speed, temperature, dashboard lights)...">
+          <input id="prompt" type="text" placeholder="Tell me about your car issue...">
           <button onclick="send()"><i class="fas fa-paper-plane mr-2"></i> Transmit</button>
         </div>
       </div>
@@ -531,11 +498,11 @@
         </div>
       </div>
       <div class="services-buttons-container">
-        <button class="service-button" onclick="showServicePopup('Diagnostics')"><i class="fas fa-diagnoses mr-2"></i>Diagnostics</button>
-        <button class="service-button" onclick="showServicePopup('Maintenance')"><i class="fas fa-tools mr-2"></i>Maintenance</button>
-        <button class="service-button" onclick="showServicePopup('Parts')"><i class="fas fa-cogs mr-2"></i>Parts</button>
-        <button class="service-button" onclick="showServicePopup('Accessories')"><i class="fas fa-car-side mr-2"></i>Accessories</button>
-        <button class="service-button" onclick="showServicePopup('Insurance')"><i class="fas fa-shield-alt mr-2"></i>Insurance</button>
+        <a href="/diagnostics" class="service-button"><i class="fas fa-diagnoses mr-2"></i>Diagnostics</a>
+        <a href="/maintenance" class="service-button"><i class="fas fa-tools mr-2"></i>Maintenance</a>
+        <a href="/parts" class="service-button"><i class="fas fa-cogs mr-2"></i>Parts</a>
+        <a href="/accessories" class="service-button"><i class="fas fa-car-side mr-2"></i>Accessories</a>
+        <a href="/insurance" class="service-button"><i class="fas fa-shield-alt mr-2"></i>Insurance</a>
       </div>
     </div>
   </section>
@@ -565,53 +532,19 @@
     </div>
   </footer>
 
-  <!-- Service Popup -->
-  <div class="service-popup" id="service-popup">
-    <div class="service-popup-content glassy-bg">
-      <h3 id="service-title" style="font-family: 'Roboto Mono', monospace; color: #f0f0f0; font-size: 24px; font-weight: 600; margin-bottom: 15px;"></h3>
-      <p id="service-description" class="text-secondary"></p>
-      <div class="flex justify-center">
-        <button class="access-button" onclick="accessService()">ACCESS</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Remove loader after page load
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        const loaderOverlay = document.getElementById("loader-overlay");
-        loaderOverlay.style.transition = "opacity 0.5s ease";
-        loaderOverlay.style.opacity = "0";
-        setTimeout(() => { loaderOverlay.style.display = "none"; }, 500);
-      }, 1000);
-    });
-
-    // Service descriptions
-    const serviceDetails = {
-      Diagnostics: {
-        title: "SolveMyCar's Diagnostics",
-        description: "Advanced diagnostic tools to identify and fix vehicle issues, ensuring your vehicle runs smoothly and efficiently."
-      },
-      Maintenance: {
-        title: "SolveMyCar's Maintenance",
-        description: "Keep your vehicle in top condition with our comprehensive maintenance services, including oil changes, tire rotations, and routine inspections."
-      },
-      Parts: {
-        title: "SolveMyCar's Parts",
-        description: "Find genuine OEM and aftermarket parts tailored to your vehicle’s specifications, ensuring optimal performance and reliability."
-      },
-      Accessories: {
-        title: "SolveMyCar's Accessories",
-        description: "Enhance your vehicle's driving experience with our range of high-quality accessories, from custom floor mats to advanced tech gadgets."
-      },
-      Insurance: {
-        title: "SolveMyCar's Insurance",
-        description: "Protect your vehicle with our tailored insurance plans, offering comprehensive coverage and peace of mind."
-      }
+    // Chatbot state
+    const state = {
+      step: 'initial',
+      issue: null,
+      brand: null,
+      model: null,
+      year: null,
+      mileage: null,
+      trim: null,
+      vin: null
     };
 
-    // Chatbot logic
     const promptEl = document.getElementById('prompt');
     const messagesEl = document.querySelector('.messages');
     const loader = document.getElementById('loader');
@@ -624,49 +557,153 @@
       messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
-    function showServicePopup(service) {
-      const serviceTitle = document.getElementById('service-title');
-      const serviceDescription = document.getElementById('service-description');
-      serviceTitle.textContent = serviceDetails[service].title;
-      serviceDescription.textContent = serviceDetails[service].description;
-      document.getElementById('service-popup').classList.add('active');
-    }
+    function parseInput(input) {
+      // Basic regex to detect brand, model, year, mileage
+      const brandMatch = input.match(/(honda|toyota|ford|bmw|chevrolet|tesla|volkswagen|audi|mercedes|nissan|hyundai|kia|subaru|mitsubishi|mazda|jeep|dodge|ram)/i);
+      const yearMatch = input.match(/\b(19|20)\d{2}\b/);
+      const mileageMatch = input.match(/(\d{1,3}(?:,\d{3})*|\d{1,6})\s*(km|kilometers|miles)/i);
+      const modelMatch = input.match(/(civic|camry|f-150|3 series|accord|cr-v|corolla|mustang|explorer|x5|model 3|jetta|a4|s-class|altima|rogue|sonata|tucson|outback|lancer|wrangler|charger|1500)/i);
 
-    function hideServicePopup() {
-      document.getElementById('service-popup').classList.remove('active');
-    }
-
-    function accessService() {
-      const service = document.getElementById('service-title').textContent;
-      const subject = encodeURIComponent(`Access ${service}`);
-      const body = encodeURIComponent(`I am interested in accessing ${service}. Please provide more details.`);
-      window.location.href = `mailto:connect@solvemycar.com?subject=${subject}&body=${body}`;
-      hideServicePopup();
+      return {
+        brand: brandMatch ? brandMatch[0].toLowerCase() : null,
+        year: yearMatch ? yearMatch[0] : null,
+        mileage: mileageMatch ? mileageMatch[1].replace(/,/g, '') : null,
+        model: modelMatch ? modelMatch[0].toLowerCase() : null
+      };
     }
 
     async function send() {
-      const q = promptEl.value.trim();
-      if (!q) return;
-      addMsg('user', q);
+      const input = promptEl.value.trim();
+      if (!input) return;
+      addMsg('user', input);
       promptEl.value = '';
-      loader.classList.add('active');
-      try {
-        const res = await fetch('https://solvemycar-v2.netlify.app/api/solve', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: q })
-        });
-        if (!res.ok) throw new Error('API error');
-        const { html } = await res.json();
-        loader.classList.remove('active');
-        addMsg('ai', html);
-      } catch (error) {
-        loader.classList.remove('active');
-        addMsg('ai', `<div style="color:#ff6b6b">Error: ${error.message}. Try again or check connection.</div>`);
+
+      // Parse input for partial info
+      const parsed = parseInput(input);
+
+      if (state.step === 'initial') {
+        state.issue = input;
+        if (parsed.brand) {
+          state.brand = parsed.brand;
+          state.step = 'model';
+          addMsg('ai', `Got it, you're dealing with "${input}" on a ${parsed.brand}. What's the model? (e.g., Civic, F-150, 3 Series)<br>[Vehicle Model]`);
+        } else {
+          state.step = 'brand';
+          addMsg('ai', `Alright, "${input}" sounds like something we can tackle! To get started, what's the brand of your car? (e.g., Toyota, Ford, BMW)<br>[Vehicle Brand]`);
+        }
+      } else if (state.step === 'brand') {
+        state.brand = input.toLowerCase();
+        state.step = 'model';
+        addMsg('ai', `Cool, a ${input} vehicle. Thanks! Now, what's the model? (e.g., Civic, F-150, 3 Series)<br>[Vehicle Model]`);
+      } else if (state.step === 'model') {
+        state.model = input.toLowerCase();
+        state.step = 'year';
+        addMsg('ai', `Nice, a ${state.brand} ${input}. What year is it?<br>[Year]`);
+      } else if (state.step === 'year') {
+        if (!/^\d{4}$/.test(input) || input < 1900 || input > new Date().getFullYear() + 1) {
+          addMsg('ai', `Hmm, that year doesn't look right. Could you share the year again? (e.g., 2017)<br>[Year]`);
+          return;
+        }
+        state.year = input;
+        state.step = 'mileage';
+        addMsg('ai', `Alright, a ${state.year} ${state.brand} ${state.model}. What's the current mileage in kilometers? This helps me figure out wear-related issues.<br>[Mileage (KMs)]`);
+      } else if (state.step === 'mileage') {
+        if (!/^\d+$/.test(input) || input < 0) {
+          addMsg('ai', `That mileage seems off. Could you share it again in kilometers? (e.g., 95000)<br>[Mileage (KMs)]`);
+          return;
+        }
+        state.mileage = input;
+        state.step = 'analysis';
+
+        // Check if trim or VIN is needed (simplified logic)
+        if (state.issue.toLowerCase().includes('rattle') || state.issue.toLowerCase().includes('complex')) {
+          state.step = 'trim';
+          addMsg('ai', `Thanks for all the details on your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km. To narrow this down, what's the engine trim? (e.g., 2.0L Turbo, V6)<br>[Trim (Optional)]`);
+          return;
+        }
+
+        // Proceed to analysis
+        loader.classList.add('active');
+        try {
+          const res = await fetch('https://solvemycar-v2.netlify.app/api/solve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              brand: state.brand,
+              model: state.model,
+              year: state.year,
+              mileage: state.mileage,
+              issue: state.issue
+            })
+          });
+          if (!res.ok) throw new Error('API error');
+          const { html } = await res.json();
+          loader.classList.remove('active');
+          addMsg('ai', `Thanks for the info! Here's what I think about your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km: ${html}`);
+          state.step = 'followup';
+        } catch (error) {
+          loader.classList.remove('active');
+          addMsg('ai', `<div style="color:#ff6b6b">Oops, something went wrong: ${error.message}. Try again or check your connection.</div>`);
+          state.step = 'initial';
+        }
+      } else if (state.step === 'trim') {
+        state.trim = input;
+        state.step = 'analysis';
+        loader.classList.add('active');
+        try {
+          const res = await fetch('https://solvemycar-v2.netlify.app/api/solve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              brand: state.brand,
+              model: state.model,
+              year: state.year,
+              mileage: state.mileage,
+              issue: state.issue,
+              trim: state.trim
+            })
+          });
+          if (!res.ok) throw new Error('API error');
+          const { html } = await res.json();
+          loader.classList.remove('active');
+          addMsg('ai', `Perfect, thanks for the trim info. Here's the diagnosis for your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km and ${state.trim} trim: ${html}`);
+          state.step = 'followup';
+        } catch (error) {
+          loader.classList.remove('active');
+          addMsg('ai', `<div style="color:#ff6b6b">Oops, something went wrong: ${error.message}. Try again or check your connection.</div>`);
+          state.step = 'initial';
+        }
+      } else if (state.step === 'followup') {
+        loader.classList.add('active');
+        try {
+          const res = await fetch('https://solvemycar-v2.netlify.app/api/solve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              brand: state.brand,
+              model: state.model,
+              year: state.year,
+              mileage: state.mileage,
+              issue: state.issue,
+              trim: state.trim,
+              followup: input
+            })
+          });
+          if (!res.ok) throw new Error('API error');
+          const { html } = await res.json();
+          loader.classList.remove('active');
+          addMsg('ai', html);
+        } catch (error) {
+          loader.classList.remove('active');
+          addMsg('ai', `<div style="color:#ff6b6b">Oops, something went wrong: ${error.message}. Try again or check your connection.</div>`);
+        }
       }
     }
 
     promptEl.addEventListener('keypress', (e) => { if (e.key === 'Enter') send(); });
+
+    // Initial greeting
+    addMsg('ai', `Hey there! I'm AI-Mechanic by SolveMyCar. What's going on with your car today?<br>[Describe your issue]`);
 
     // 3D tilt and reflection effects
     document.addEventListener('mousemove', (e) => {
@@ -694,12 +731,6 @@
 
     document.querySelector('.chat-container').addEventListener('mouseleave', () => {
       document.querySelector('.chat-container').style.transform = 'perspective(1500px) translateZ(0) rotateX(0) rotateY(0)';
-    });
-
-    document.getElementById('service-popup').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('service-popup')) {
-        hideServicePopup();
-      }
     });
   </script>
 </body>
