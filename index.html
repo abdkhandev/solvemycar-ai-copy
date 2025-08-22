@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolveMyCar • AI-Mechanic Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #f3f4f6; }
+    .messages { overflow-y: auto; max-height: calc(100vh - 200px); }
+    .message { margin: 10px; padding: 10px; border-radius: 8px; }
+    .user { background-color: #3b82f6; color: white; margin-left: 20%; }
+    .ai { background-color: #e5e7eb; color: black; margin-right: 20%; }
+    .typing { background-color: #e5e7eb; color: black; margin-right: 20%; display: flex; gap: 5px; }
+    .typing span { width: 8px; height: 8px; background-color: #6b7280; border-radius: 50%; animation: blink 1.4s infinite both; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink {
+      0%, 20% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+  <div class="w-full max-w-2xl">
+    <h1 class="text-3xl font-bold text-center mb-4">SolveMyCar • AI-Mechanic Diagnostic Console</h1>
+    <p class="text-center text-gray-600 mb-4">You are about to witness the reality of car mechanism by an AI — where you may forget you're consulting an AI at all.</p>
+    <p class="text-center text-gray-500 mb-6">calibrating sensors • compiling service manuals • warming up torque wrenches…</p>
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-center mb-4">Mechanic-grade advice, AI speed</h2>
+      <p class="text-center text-green-600 mb-4">Online Secure session</p>
+      <p class="text-center text-gray-500 mb-4">Tip: Share the exact conditions (speed, temperature, dashboard lights). The more detail, the better the diagnosis.</p>
+      <div class="messages flex flex-col mb-4 p-4 bg-gray-100 rounded-lg"></div>
+      <div class="flex gap-2">
+        <input id="prompt" type="text" placeholder="Describe your car issue..." class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button onclick="send()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Send</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const promptEl = document.getElementById('prompt');
+    const messagesEl = document.querySelector('.messages');
+
+    function addMsg(type, content) {
+      const div = document.createElement('div');
+      div.className = `message ${type}`;
+      div.innerHTML = content;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function addTyping() {
+      const div = document.createElement('div');
+      div.className = 'message typing';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return div;
+    }
+
+    async function send() {
+      const q = promptEl.value.trim();
+      if (!q) return;
+      addMsg('user', q);
+      promptEl.value = '';
+      const t = addTyping();
+      try {
+        const res = await fetch('/api/solve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: q })
+        });
+        if (!res.ok) throw new Error('API error');
+        const { html } = await res.json();
+        t.remove();
+        addMsg('ai', html);
+      } catch (error) {
+        t.remove();
+        addMsg('ai', `<div style="color:red">Error: ${error.message}. Try again or check connection.</div>`);
+      }
+    }
+
+    promptEl.addEventListener('keypress', (e) => { if (e.key === 'Enter') send(); });
+  </script>
+</body>
+</html>

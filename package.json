@@ -1,0 +1,15 @@
+{
+  "name": "solvemycar-ai-netlify",
+  "version": "1.0.0",
+  "description": "SolveMyCar AI Mechanic Chatbot",
+  "main": "functions/solve.js",
+  "scripts": {
+    "start": "node functions/solve.js"
+  },
+  "dependencies": {
+    "groq-sdk": "^0.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
