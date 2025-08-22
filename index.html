@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SolveMyCar • AI-Mechanic Diagnostic Console</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <script>
     tailwind.config = {
@@ -72,7 +72,7 @@
     }
     body {
       background: #121212;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Lexend', sans-serif;
       perspective: 1500px;
       color: #e0e0e0;
       min-height: 100vh;
@@ -447,25 +447,26 @@
   <!-- Hero Section -->
   <section class="hero glassy-bg">
     <div class="relative z-10 text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold metallic-text tracking-tight mb-5">SolveMyCar • AI-Mechanic Diagnostic Console</h1>
+      <h1 class="text-6xl sm:text-7xl font-extrabold metallic-text tracking-tight mb-2">SolveMyCar</h1>
+      <h2 class="text-2xl sm:text-3xl font-semibold metallic-text tracking-tight mb-5">Presents, AI-Mechanic</h2>
       <div class="w-48 h-1 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent mb-5"></div>
       <p class="text-primary max-w-2xl mx-auto text-lg md:text-xl opacity-90 font-light">You are about to witness the reality of car mechanism by an AI — where you may forget you're consulting an AI at all.</p>
       <p class="text-secondary mt-2 text-sm">calibrating sensors • compiling service manuals • warming up torque wrenches…</p>
-      <a href="#chatbot" class="mt-6 inline-block submit-button"><i class="fas fa-rocket mr-2"></i> Engage AI Mechanic</a>
+      <a href="#chatbot" class="mt-6 inline-block submit-button"><i class="fas fa-rocket mr-2"></i> Your daily mechanic for your car. Who works, 24/7.</a>
     </div>
   </section>
 
   <!-- Chatbot Section -->
   <section id="chatbot" class="py-12 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 glassy-bg">
-      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">Mechanic-Grade Advice, AI Speed</h2>
-      <p class="text-secondary text-center mb-8">Online Secure Session<br>Tip: Share the exact conditions (speed, temperature, dashboard lights). The more detail, the better the diagnosis.</p>
+      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">Your AI-Mechanic</h2>
+      <p class="text-secondary text-center mb-8">Online Secure Session<br>Tip: Speak just like you would talk to a human.</p>
       <div class="chat-container">
         <div class="messages"></div>
         <div class="loader" id="loader"></div>
         <div class="input-container">
           <input id="prompt" type="text" placeholder="Tell me about your car issue...">
-          <button onclick="send()"><i class="fas fa-paper-plane mr-2"></i> Transmit</button>
+          <button onclick="send()"><i class="fas fa-paper-plane mr-2"></i> Send</button>
         </div>
       </div>
     </div>
@@ -474,26 +475,26 @@
   <!-- About Section -->
   <section id="about" class="py-12 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 glassy-bg">
-      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">About SolveMyCar</h2>
-      <p class="text-secondary text-center max-w-2xl mx-auto">SolveMyCar harnesses interstellar AI technology to deliver precise, reliable, and instant car diagnostics. Our mission is to redefine automotive support with cutting-edge innovation.</p>
+      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">What is SolveMyCar?</h2>
+      <p class="text-secondary text-center max-w-2xl mx-auto">The name says it all. To solve anything about your car, you logon to SolveMyCar. Harnessing interstellar AI technology to deliver precise, reliable, and instant car diagnostics. Our mission is to redefine automotive support with cutting-edge innovation.</p>
     </div>
   </section>
 
   <!-- Services Section -->
   <section id="services" class="py-12 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 glassy-bg">
-      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">Our Services</h2>
+      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">Solve Services</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-gradient-to-br from-medium-gray to-dark-gray p-6 rounded-lg shadow-lg border-3d">
-          <h3 class="text-xl font-semibold text-primary" style="font-family: 'Roboto Mono', monospace;">AI Diagnostics</h3>
+          <h3 class="text-xl font-semibold text-primary" style="font-family: 'Roboto Mono', monospace;">Solve AI-Diagnostics</h3>
           <p class="text-secondary mt-2">Instant troubleshooting with unparalleled accuracy.</p>
         </div>
         <div class="bg-gradient-to-br from-medium-gray to-dark-gray p-6 rounded-lg shadow-lg border-3d">
-          <h3 class="text-xl font-semibold text-primary" style="font-family: 'Roboto Mono', monospace;">Maintenance Protocols</h3>
+          <h3 class="text-xl font-semibold text-primary" style="font-family: 'Roboto Mono', monospace;">Solve Maintenance</h3>
           <p class="text-secondary mt-2">Tailored advice to optimize your vehicle’s performance.</p>
         </div>
         <div class="bg-gradient-to-br from-medium-gray to-dark-gray p-6 rounded-lg shadow-lg border-3d">
-          <h3 class="text-xl font-semibold text-primary" style="font-family: 'Roboto Mono', monospace;">Repair Blueprints</h3>
+          <h3 class="text-xl font-semibold text-primary" style="font-family: 'Roboto Mono', monospace;">Solve Repairs</h3>
           <p class="text-secondary mt-2">Detailed guides for efficient and safe repairs.</p>
         </div>
       </div>
@@ -510,8 +511,8 @@
   <!-- Contact Section -->
   <section id="contact" class="py-12 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 glassy-bg">
-      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">Contact Us</h2>
-      <p class="text-secondary text-center max-w-2xl mx-auto">Need assistance? Connect with our team at <a href="mailto:support@solvemycar.com" class="text-primary hover:text-accent">support@solvemycar.com</a>.</p>
+      <h2 class="text-3xl font-bold text-primary text-center mb-6 metallic-text">Connect Humans</h2>
+      <p class="text-secondary text-center max-w-2xl mx-auto">Need assistance? Connect with our team at <a href="mailto:connect@solvemycar.com" class="text-primary hover:text-accent">connect@solvemycar.com</a>.</p>
     </div>
   </section>
 
@@ -520,13 +521,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div class="flex flex-col sm:flex-row justify-between items-center">
         <div class="mb-4 sm:mb-0">
-          <p class="text-secondary">&copy; 2025 SolveMyCar. All rights reserved.</p>
+          <p class="text-secondary">&copy; 2025 SolveMyCar | Owned & Managed by AutoFixing.ae | All rights reserved.</p>
         </div>
         <div class="flex space-x-4">
           <a href="#" class="hover:text-accent">Privacy Policy</a>
           <a href="#" class="hover:text-accent">Terms of Service</a>
-          <a href="https://x.com" class="hover:text-accent">X</a>
-          <a href="mailto:support@solvemycar.com" class="hover:text-accent">Contact</a>
+          <a href="https://instagram.com/solvemycar" class="hover:text-accent">Instagram</a>
+          <a href="mailto:support@solvemycar.com" class="hover:text-accent">Connect</a>
+          <a href="https://x.com/solvemycar" class="hover:text-accent">X</a>
+          <a href="https://facebook.com/solvemycar" class="hover:text-accent">Facebook</a>
         </div>
       </div>
     </div>
@@ -558,13 +561,17 @@
     }
 
     function parseInput(input) {
-      // Basic regex to detect brand, model, year, mileage
+      // Detect greetings
+      const greetingMatch = input.match(/^(hi|hello|hey|yo|what's up|howdy|sup)(\s|$)/i);
+      // Detect brand, model, year, mileage
       const brandMatch = input.match(/(honda|toyota|ford|bmw|chevrolet|tesla|volkswagen|audi|mercedes|nissan|hyundai|kia|subaru|mitsubishi|mazda|jeep|dodge|ram)/i);
       const yearMatch = input.match(/\b(19|20)\d{2}\b/);
       const mileageMatch = input.match(/(\d{1,3}(?:,\d{3})*|\d{1,6})\s*(km|kilometers|miles)/i);
       const modelMatch = input.match(/(civic|camry|f-150|3 series|accord|cr-v|corolla|mustang|explorer|x5|model 3|jetta|a4|s-class|altima|rogue|sonata|tucson|outback|lancer|wrangler|charger|1500)/i);
 
       return {
+        isGreeting: !!greetingMatch,
+        greeting: greetingMatch ? greetingMatch[0].toLowerCase() : null,
         brand: brandMatch ? brandMatch[0].toLowerCase() : null,
         year: yearMatch ? yearMatch[0] : null,
         mileage: mileageMatch ? mileageMatch[1].replace(/,/g, '') : null,
@@ -578,27 +585,82 @@
       addMsg('user', input);
       promptEl.value = '';
 
-      // Parse input for partial info
+      // Parse input
       const parsed = parseInput(input);
 
+      // Handle greetings
+      if (parsed.isGreeting && state.step === 'initial') {
+        if (parsed.brand || parsed.model || parsed.year || parsed.mileage) {
+          // Greeting with car details, e.g., "Hi, my 2020 Honda Civic won't start"
+          state.issue = input.replace(parsed.greeting, '').trim() || 'unspecified issue';
+          state.brand = parsed.brand;
+          state.model = parsed.model;
+          state.year = parsed.year;
+          state.mileage = parsed.mileage;
+
+          if (state.brand && state.model && state.year && state.mileage) {
+            state.step = 'analysis';
+            if (state.issue.toLowerCase().includes('rattle') || state.issue.toLowerCase().includes('complex')) {
+              state.step = 'trim';
+              addMsg('ai', `Yo, ${parsed.greeting}! Thanks for the details on your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km. To nail this down, what's the engine trim? (e.g., 2.0L Turbo, V6)<br>[Trim (Optional)]`);
+              return;
+            }
+            loader.classList.add('active');
+            try {
+              const res = await fetch('https://solvemycar-v2.netlify.app/api/solve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  brand: state.brand,
+                  model: state.model,
+                  year: state.year,
+                  mileage: state.mileage,
+                  issue: state.issue
+                })
+              });
+              if (!res.ok) throw new Error('API error');
+              const { html } = await res.json();
+              loader.classList.remove('active');
+              addMsg('ai', `Hey, ${parsed.greeting}! Here's what I think about your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km: ${html}`);
+              state.step = 'followup';
+            } catch (error) {
+              loader.classList.remove('active');
+              addMsg('ai', `<div style="color:#ff6b6b">Oops, something went wrong: ${error.message}. Try again or check your connection.</div>`);
+              state.step = 'initial';
+            }
+          } else if (state.brand) {
+            state.step = state.model ? (state.year ? 'mileage' : 'year') : 'model';
+            addMsg('ai', `Yo, ${parsed.greeting}! Got that you're working with a ${state.brand}. ${state.model ? `Nice, a ${state.model}. What year is it?` : `What's the model? (e.g., Civic, F-150, 3 Series)`}<br>[${state.model ? 'Year' : 'Vehicle Model'}]`);
+          } else {
+            state.step = 'brand';
+            addMsg('ai', `Yo, ${parsed.greeting}! Good to see ya! Got a car issue on your mind, or just saying hi? If it's about your car, what's the brand? (e.g., Toyota, Ford, BMW)<br>[Vehicle Brand]`);
+          }
+        } else {
+          // Pure greeting, e.g., "Hi"
+          addMsg('ai', `Yo, ${parsed.greeting}! Good to see ya! Got a car issue on your mind, or just chilling? If you’ve got a problem, tell me about it!<br>[Describe your issue]`);
+        }
+        return;
+      }
+
+      // Diagnostic flow
       if (state.step === 'initial') {
         state.issue = input;
         if (parsed.brand) {
           state.brand = parsed.brand;
           state.step = 'model';
-          addMsg('ai', `Got it, you're dealing with "${input}" on a ${parsed.brand}. What's the model? (e.g., Civic, F-150, 3 Series)<br>[Vehicle Model]`);
+          addMsg('ai', `Sweet, "${input}" on a ${parsed.brand} sounds like something we can tackle! What's the model? (e.g., Civic, F-150, 3 Series)<br>[Vehicle Model]`);
         } else {
           state.step = 'brand';
-          addMsg('ai', `Alright, "${input}" sounds like something we can tackle! To get started, what's the brand of your car? (e.g., Toyota, Ford, BMW)<br>[Vehicle Brand]`);
+          addMsg('ai', `Oof, "${input}" sounds like something we need to sort out! What's the brand of your car? (e.g., Toyota, Ford, BMW)<br>[Vehicle Brand]`);
         }
       } else if (state.step === 'brand') {
         state.brand = input.toLowerCase();
         state.step = 'model';
-        addMsg('ai', `Cool, a ${input} vehicle. Thanks! Now, what's the model? (e.g., Civic, F-150, 3 Series)<br>[Vehicle Model]`);
+        addMsg('ai', `Cool, a ${input} vehicle. Nice! What's the model? (e.g., Civic, F-150, 3 Series)<br>[Vehicle Model]`);
       } else if (state.step === 'model') {
         state.model = input.toLowerCase();
         state.step = 'year';
-        addMsg('ai', `Nice, a ${state.brand} ${input}. What year is it?<br>[Year]`);
+        addMsg('ai', `Sweet, a ${state.brand} ${input}. What year is it?<br>[Year]`);
       } else if (state.step === 'year') {
         if (!/^\d{4}$/.test(input) || input < 1900 || input > new Date().getFullYear() + 1) {
           addMsg('ai', `Hmm, that year doesn't look right. Could you share the year again? (e.g., 2017)<br>[Year]`);
@@ -615,7 +677,7 @@
         state.mileage = input;
         state.step = 'analysis';
 
-        // Check if trim or VIN is needed (simplified logic)
+        // Check if trim or VIN is needed
         if (state.issue.toLowerCase().includes('rattle') || state.issue.toLowerCase().includes('complex')) {
           state.step = 'trim';
           addMsg('ai', `Thanks for all the details on your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km. To narrow this down, what's the engine trim? (e.g., 2.0L Turbo, V6)<br>[Trim (Optional)]`);
@@ -639,7 +701,7 @@
           if (!res.ok) throw new Error('API error');
           const { html } = await res.json();
           loader.classList.remove('active');
-          addMsg('ai', `Thanks for the info! Here's what I think about your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km: ${html}`);
+          addMsg('ai', `Sweet, here's what I think about your ${state.year} ${state.brand} ${state.model} with ${state.mileage} km: ${html}`);
           state.step = 'followup';
         } catch (error) {
           loader.classList.remove('active');
@@ -703,7 +765,7 @@
     promptEl.addEventListener('keypress', (e) => { if (e.key === 'Enter') send(); });
 
     // Initial greeting
-    addMsg('ai', `Hey there! I'm AI-Mechanic by SolveMyCar. What's going on with your car today?<br>[Describe your issue]`);
+    addMsg('ai', `Yo, what's good? I'm AI-Mechanic by SolveMyCar. Got a car issue or just wanna chat?<br>[Say hi or describe your issue]`);
 
     // 3D tilt and reflection effects
     document.addEventListener('mousemove', (e) => {
